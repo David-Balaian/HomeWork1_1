@@ -104,7 +104,7 @@ function minpositive(arr){
 
 function index(arr){
     let len=arr.length;
-    for(let i = 0; i<len; i++){
+    for(let i = 1; i<len; i++){
         if (arr[i-1]>arr[i]){
             return i;
         }
