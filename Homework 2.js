@@ -2,7 +2,7 @@
 // first element and returns the given array. (without using
 // arr.unshift(),assign second element to first, third element to second...)
 
-function ArrRemoveFirst(arr,i=1,arrhelp=[]){
+function ArrRemoveFirst(arr = [], i = 1, arrhelp = []){
 	if(arr.length === 0){
 		return arrhelp;	
 	}else if (i==arr.length){
