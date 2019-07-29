@@ -72,32 +72,21 @@ function Sum_Of_Digits(number, sum=0){
 // If there is more than key for that given value create an array.
 
 function Object_Invert(obj = {}){
-
-	for(let key1 in obj){
-		for(let key2 in obj){
-			if ((obj[key1]==obj[key2]) && (key1!==key2)){
-				obj[obj[key2]]=[];
-			}
+	let resobj={};
+	let len=Object.keys(obj).length;
+	for(let i=0; i<len; i++){
+		if(resobj.hasOwnProperty(Object.values(obj)[i])){
+			if(!Array.isArray(resobj[Object.values(obj)[i]])){
+				resobj[Object.values(obj)[i]]=[resobj[Object.values(obj)[i]]];
+            }
+			resobj[Object.values(obj)[i]].push(Object.keys(obj)[i]);
+            
+		}else{
+			resobj[Object.values(obj)[i]]=Object.keys(obj)[i];
 		}
-	}
-for(let key1 in obj){
-	for(let key2 in obj){
-		if (Array.isArray(obj[key1])){
-			if(obj[key2]==key1){
-				obj[key1].push(key2);
-				delete obj[key2];
-			}
-		}
-	}
-}
-for(let key in obj){
-	if(!Array.isArray(obj[key])){
-		obj[obj[key]]=key;
-		delete obj[key];
-	}
-}
 
-return obj;
+	}
+	return resobj;
 }
 
 /////////////////////////////////////////////////////
