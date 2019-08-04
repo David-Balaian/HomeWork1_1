@@ -45,9 +45,10 @@ Sum_Of_Arr = arr =>arr.map(item => {return item.reduce((total,item1) => total+=i
 // length
 
 
-function weirdarray(arr){
+function weird_array(arr){
 	let newarr=arr.filter(item => item % 2 != 0);
-	return newarr.map(item => item*=newarr.length)
+	let len =newarr.length;
+	return newarr.map(item => item*=len)
 }
 
 
