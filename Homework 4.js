@@ -4,15 +4,15 @@
 // and return that product.
 
 
-function maxProduct(arr){
-	let max1 = Math.max(...arr);
-	arr.splice(arr.indexOf(max1),1);
-	let max2 = Math.max(...arr);
-	let min1 = Math.min(...arr);
-	arr.splice(arr.indexOf(min1),1);
-	let min2 = Math.min(...arr);
-	let result = (max1*max2>min1*min2) ? max1 *max2 : min1 * min2;
-	return result;
+function findProd(arr){
+	return arr.reduce(((prod,item,i,arr) => {
+		if(prod < arr[i]*arr[i+1]){
+			return prod =arr[i]*arr[i+1];
+		}
+		else{
+			return prod;
+		}
+	}),1)
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -63,40 +63,34 @@ function substrings(str, n){
 // parent and id properties.
 
 
-function maketree(arr,tree={}){
-	
-	if(arr[0].parent == null){
-		tree[arr[0].id] = {};
-		arr.splice(0,1);	
-	}
-	let keys = Object.keys(tree)
+function maketree(arr,tree={},haveprop = undefined){
+	if(arr[0].parent == null){tree[arr[0].id]={};arr.splice(0,1);}
+	if(haveprop!=undefined){tree[haveprop] = {}}
+	let keys = Object.keys(tree);
 	for(let key of keys){
-	for(let i=0; i<arr.length;i++){
-		if(arr[i].parent == key){
-				tree[key][arr[i].id] = {}
-				arr.splice(i,1);
-				i--;
+		for(let elem of arr){
+			if(elem.parent == key){
+				tree[key] = maketree(arr,tree[key],elem.id); 
 			}
 		}
 	}
-	if(arr.length==0){return tree}
-	return Object.assign(tree, maketree(arr,tree[keys[0]]));
+	return tree;
 }
 	// 6. Given the list of the following readers:
 // [
-// { book: &quot;Catcher in the Rye&quot;, readStatus: true, percent: 40},
-// { book: &quot;Animal Farm&quot;, readStatus: true, percent: 20},
-// { book: &quot;Solaris&quot;, readStatus: false, percent: 90 },
-// { book: &quot;The Fall&quot;, readStatus: true, percent: 50 },
-// { book: &quot;White Nights&quot;, readStatus: false, percent: 60 } ,
-// { book: &quot;After Dark&quot;, readStatus: true, percent: 70 }
+// { book: 'Catcher in the Rye', readStatus: true, percent: 40},
+// { book: 'Animal Farm', readStatus: true, percent: 20},
+// { book: 'Solaris', readStatus: false, percent: 90 },
+// { book: 'The Fall', readStatus: true, percent: 50 },
+// { book: 'White Nights', readStatus: false, percent: 60 } ,
+// { book: 'After Dark', readStatus: true, percent: 70 }
 // ];
 
+// Output the books sorted by the percent in descending order which readStatus is true.
 
 function sort_as_percent(arr){
-	return arr.sort((b,a) => {
-		if(a.readStatus == true&&b.readStatus==true){return (a.percent - b.percent)};
-	})
+	arr.sort((a,b) => {return b.percent-a.percent})
+	.forEach(item => {if(item.readStatus == true){console.log(item.book)}});
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
