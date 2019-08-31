@@ -22,7 +22,7 @@ function spellNumber(num) {
 			}
         }
         else if (i == spells.length - 3 || i == spells.length - 6) {
-            item = obj[item] + " hundred";
+            item = obj[item] + ' hundred';
         }
         else if (i == spells.length - 4) {
             item = obj[item] + ' thousand';
