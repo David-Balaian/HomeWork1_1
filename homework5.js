@@ -49,11 +49,12 @@ function subsets3(arr=[]){
 	}
 	let res=[];
 	let subres = [];
-	for(let k=0; k<arr.length; k++){
+	let len = arr.length;
+	for(let k=0; k<len; k++){
 		subres.push(arr[k]);
-		for(let i=k+1; i<arr.length; i++){
+		for(let i=k+1; i<len; i++){
 			subres.push(arr[i])
-			for(let j=i+1; j<arr.length; j++){
+			for(let j=i+1; j<len; j++){
 				subres.push(arr[j])
 				if(subres.length == 3){res.push([...subres]);subres.pop();}
 			}
@@ -72,7 +73,8 @@ function anagram(str,arr){
 	let help = str.split('').sort().join('');
 	let helparr = arr.map(item => {return item.split('').sort().join('')})
 	let res=[];
-	for(let i=0; i<helparr.length; i++){
+	let len = helparr.length;
+	for(let i=0; i<len; i++){
 		if(helparr[i]==help){
 			res.push(arr[i])
 		}
