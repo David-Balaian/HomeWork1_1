@@ -6,6 +6,7 @@
 function spellNumber(num) {
     let obj = { 1: 'one', 2: 'two', 3: 'three', 4: 'four', 5: 'five', 6: 'six', 7: 'seven', 8: 'eight', 9: 'nine' };
     let spells = [...num.toString()];
+	if((spells.some(item => isNaN(+item)))||(spells.length>6)){return 'enter a number with 6 digits max'}
     let result = spells.map((item, i, arr) => {
         if (item == 0) {
             return item = '';
@@ -18,11 +19,11 @@ function spellNumber(num) {
                 item = (item == 2) ? 'twenty' : (item == 3) ? 'thirty' : (item == 5) ? 'fifty' : (item == 8) ? 'eighty' : obj[item] + 'ty';
             }
 			if(i == spells.length - 5){
-				item+=' thousand'
+				item +=(spells[i+1]==0) ? ' thousand' : '';
 			}
         }
         else if (i == spells.length - 3 || i == spells.length - 6) {
-            item = obj[item] + ' hundred';
+            item =(i == spells.length - 6)&&(spells[i+1]==0)&&(spells[i+2]==0) ? obj[item] + ' hundred thousand' : obj[item] + ' hundred';
         }
         else if (i == spells.length - 4) {
             item = obj[item] + ' thousand';
