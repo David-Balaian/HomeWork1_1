@@ -6,6 +6,7 @@ function binarySearch(arr,n){
 	let end = arr.length-1;
 	let middle = Math.floor((start+end)/2);
 	while(arr[middle]!==n){
+		if((middle == 0)||(middle == arr.length-1)){return 'No such element in array'}
 		if(arr[middle]<n){
 			start = middle;
 			middle = Math.ceil((start+end)/2);
