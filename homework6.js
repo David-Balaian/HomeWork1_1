@@ -1,41 +1,23 @@
 // 1.Given a sorted array and an element from that array.Find the index of that element using binary search
 
 
-function binarySearch(arr, n) {
-    let count = 0;
-    let helparr = []
-    if (arr.length > 10) {
-        let middle = Math.floor(arr.length / 2);
-        if (arr[middle] < n) {
-            helparr = arr.slice(middle);
-            count += middle;
-        } else if (arr[middle] > n) {
-            helparr = arr.slice(0, middle);
-        }
-        middle = Math.floor(helparr.length / 2);
-
-        while (helparr.length > 10) {
-            if (helparr[middle] < n) {
-                helparr.splice(0, middle);
-                count += middle;
-            } else if (helparr[middle] > n) {
-                helparr.splice(middle);
-            } else { return middle + count }
-            middle = Math.floor(helparr.length / 2);
-        }
-
-        for (let i = 0; i < helparr.length; i++) {
-            if (helparr[i] == n) { return i + count }
-        }
-    }
-
-    for (let i = 0; i < arr.length; i++) {
-        if (arr[i] == n) {
-            return i + count
-        }
-    }
-    return 'no such element in the array'
+function binarySearch(arr,n){
+	let start = 0;
+	let end = arr.length-1;
+	let middle = Math.floor((start+end)/2);
+	while(arr[middle]!==n){
+		if(arr[middle]<n){
+			start = middle;
+			middle = Math.ceil((start+end)/2);
+		}else{
+			end = middle;
+			middle = Math.floor((start+end)/2);
+		}
+	}
+	return middle;
 }
+
+
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 // 2. Write a JavaScript function to get all possible subsets of length N of the given array. Assume that all elements in  the array are unique.
