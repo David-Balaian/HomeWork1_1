@@ -188,8 +188,3 @@ function updateimg(){
     }
     len = arrimages.length;
 }
-
-function isURLimage(str){
-    return (/\.(gif|jpg|jpeg|tiff|png)$/i).test(str)
-    
-}
