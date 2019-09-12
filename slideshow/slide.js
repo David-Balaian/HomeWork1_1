@@ -158,7 +158,7 @@ function closing(){
 
 function addingurl(){
     let file = document.getElementById("fileurl")
-    let bool = (/\.(gif|jpg|jpeg|tiff|png)$/i).test(file.value.trim());
+    let bool = (/\.(jpg|jpeg|png)$/i).test(file.value.trim());
     let invalid = document.querySelector("#filewindow>h4");
     if(bool){
         file.style.border = "none";
