@@ -1,5 +1,4 @@
 function addlist() {
-    let bool = false;
     let list11 = document.getElementById("emp")
     if(!!list11){
         list11.parentElement.removeChild(list11);
@@ -47,7 +46,7 @@ function addlist() {
             icon1.setAttribute('class', 'fas fa-trash-alt');
             if(newinp.style.opacity==0.8){
                 hh = newspan.removeChild(change);
-                 bool = true;
+           
  
             }else{
                 if(newinp.type=='text'){
@@ -80,7 +79,8 @@ function addlist() {
         })
         newspan.addEventListener("mouseleave", function () {
             newspan.removeChild(delet);
-            if(!bool){
+             let pen = document.getElementsByClassName("fas fa-pen")
+            if(pen.length){
             newspan.removeChild(change);
             }
 
